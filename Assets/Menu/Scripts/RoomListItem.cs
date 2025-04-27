@@ -4,16 +4,20 @@ using UnityEngine;
 using Photon.Realtime;
 using TMPro;
 
-public class RoomListItem : MonoBehaviour {
-  [SerializeField] TMP_Text label;
+public class RoomListItem : MonoBehaviour
+{
+    [SerializeField] TMP_Text label;
 
-  RoomInfo info;
-  public void SetUp(RoomInfo _info) {
-    info = _info;
-    label.text = _info.Name;
-  }
+    RoomInfo info;
 
-  public void OnClick() {
-    Launcher.Instance.JoinRoom(info);
-  }
+    public void SetUp(RoomInfo _info)
+    {
+        info = _info;
+        label.text = $"{_info.Name} [{_info.PlayerCount}/{_info.MaxPlayers}]";
+    }
+
+    public void OnClick()
+    {
+        Launcher.Instance.JoinRoom(info);
+    }
 }
