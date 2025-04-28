@@ -18,7 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
   [SerializeField] TMP_Text roomNameText;
   [SerializeField] Transform playerListContent;
   [SerializeField] GameObject playerListItemPrefab;
-  //[SerializeField] GameObject startGameButton;
+  [SerializeField] GameObject startGameButton;
   [SerializeField] TMP_Text errorText;
   
   private void Awake() {
@@ -66,7 +66,6 @@ public class Launcher : MonoBehaviourPunCallbacks {
         else
         {
             Debug.Log("No player name entered");
-            // TODO: Mostrar error al jugador
         }
     }
 
@@ -121,12 +120,13 @@ public class Launcher : MonoBehaviourPunCallbacks {
             Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
         }
 
-        //startGameButton.SetActive(PhotonNetwork.IsMasterClient); // (comentado como antes)
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient); // (comentado como antes)
     }
 
-    //public override void OnMasterClientSwitched(Player newMasterClient) {
-    //  startGameButton.SetActive(PhotonNetwork.IsMasterClient);
-    //}
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
 
     public void LeaveRoom() {
     PhotonNetwork.LeaveRoom();
@@ -164,13 +164,14 @@ public class Launcher : MonoBehaviourPunCallbacks {
     Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
   }
 
-  //public void StartGame() {
-  //  // 1 is used as the build index of the game scene, defined in the build settings
-  //  // Use this instead of scene management so that *everyone* in the lobby goes into this scene
-  //  PhotonNetwork.LoadLevel(1);
-  //}
+    public void StartGame()
+    {
+        // 1 is used as the build index of the game scene, defined in the build settings
+        // Use this instead of scene management so that *everyone* in the lobby goes into this scene
+        PhotonNetwork.LoadLevel(1);
+    }
 
-  public void QuitGame() {
+    public void QuitGame() {
     Application.Quit();
   }
 }

@@ -21,7 +21,8 @@ namespace Michsky.UI.ModernUIPack
             {
                 try
                 {
-                    var canvas = (Canvas)GameObject.FindObjectsOfType(typeof(Canvas))[0];
+                    var canvases = GameObject.FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+                    var canvas = canvases[0];
                     dragArea = canvas.GetComponent<RectTransform>();
                 }
 
