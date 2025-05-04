@@ -17,7 +17,17 @@ public class PlayerManager : MonoBehaviour {
     }
   }
 
-  private void CreateController() {
-    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
-  }
+    private void CreateController()
+    {
+        int personajeIndex = PlayerPrefs.GetInt("PersonajeSeleccionado", 0);
+
+        string[] personajeNombres = new string[] {
+            "PlayerController",
+            "PlayerControllerCube",
+            "PlayerControllerCylinder"
+        };
+
+        string prefabName = personajeNombres[personajeIndex];
+        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", prefabName), Vector3.zero, Quaternion.identity);
+    }
 }

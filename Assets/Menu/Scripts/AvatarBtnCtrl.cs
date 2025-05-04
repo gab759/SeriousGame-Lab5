@@ -7,6 +7,14 @@ public class AvatarBtnCtrl : MonoBehaviour
     private int indice;
     public GameObject[] ListaAvatars;
 
+    private void OnEnable()
+    {
+        // Activar el primer avatar al abrir el selector
+        indice = 0;
+
+        ListaAvatars[indice].SetActive(true);
+    }
+
     public void CambiarIzquierda()
     {
         ListaAvatars[indice].SetActive(false);
@@ -17,6 +25,7 @@ public class AvatarBtnCtrl : MonoBehaviour
 
         ListaAvatars[indice].SetActive(true);
     }
+
     public void CambiarDerecha()
     {
         ListaAvatars[indice].SetActive(false);
@@ -31,7 +40,9 @@ public class AvatarBtnCtrl : MonoBehaviour
     public void ConfirmarAvatar()
     {
         PlayerPrefs.SetInt("PersonajeSeleccionado", indice);
-        Debug.Log("Guardado: " + indice); 
-}
+        Debug.Log("Guardado: " + indice);
 
+        // Desactivar el avatar seleccionado después de confirmar
+        ListaAvatars[indice].SetActive(false);
+    }
 }
