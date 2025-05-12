@@ -35,6 +35,11 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
+  - ShootRPC
+  - RPC_Shoot
+  - "RecibirDa\xF1o"
+  - TakeDamage
+  - UpdateHealthBar
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

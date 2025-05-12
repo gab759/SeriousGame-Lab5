@@ -35,4 +35,8 @@ public class InputManager : MonoBehaviour {
   public bool playerJumpedThisFrame() {
     return playerControls.Ground.Jump.triggered;
   }
+  public bool playerFiredThisFrame()
+  {
+      return playerControls.Ground.Fire.triggered;
+  }
 }
